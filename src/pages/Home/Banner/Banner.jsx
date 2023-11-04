@@ -8,7 +8,7 @@ const Banner = () => {
                 <div className="hero-content text-center text-neutral-content">
                     <div className="lg:max-w-4xl text-white">
                         <h1 className="mb-5 text-4xl md:text-5xl  font-bold">You Can Enjoy Your Beautiful Day by Sharing It with Us Through Blog</h1>
-                        <p className="mb-5">Blogging is not just about words on a screen; it's about sharing stories, knowledge, and experiences with the world. It's a platform where your thoughts come to life, and your voice finds its audience. Whether you're a seasoned blogger or just starting your journey, remember that your unique perspective matters. So, keep writing, keep sharing, and keep inspiring through your blog!</p>
+                        <p className="mb-5 font-sans">Blogging is not just about words on a screen; it's about sharing stories, knowledge, and experiences with the world. It's a platform where your thoughts come to life, and your voice finds its audience. Whether you're a seasoned blogger or just starting your journey, remember that your unique perspective matters. So, keep writing, keep sharing, and keep inspiring through your blog!</p>
                         <button className="btn bg-orange-500 text-white hover:text-black">Get Started </button>
                     </div>
                 </div>
