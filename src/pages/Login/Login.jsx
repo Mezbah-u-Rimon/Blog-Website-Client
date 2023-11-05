@@ -47,9 +47,6 @@ const Login = () => {
             <div className="hero-content flex-col lg:flex-row">
                 <div className="mr-8 lg:w-1/2">
                     <img className="md:h-[600px]" src={register}></img>
-
-                    {/* <iframe style={{ width: '500px' }} src="https://lottie.host/?file=00a0b40f-e253-46d7-87c3-abb047a360ef/Sg6bxX3xzs.json"></iframe> */}
-
                 </div>
                 <div className="card flex-shrink-0 w-full md:max-w-md shadow-2xl bg-base-100">
 
