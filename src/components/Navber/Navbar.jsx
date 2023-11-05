@@ -9,33 +9,35 @@ const Navbar = () => {
         logOut()
     }
 
-    const navbar = <div className="flex flex-col lg:flex-row items-center gap-3">
+    const navbar = <div className="flex flex-col lg:flex-row items-center gap-5">
         <NavLink to="/" className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Home </NavLink>
-
-
-        <NavLink to='/addBlog' className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"
-        }> Add Blog </NavLink>
-
-        <NavLink className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"
-        }>All blogs  </NavLink>
-
-        <NavLink className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Featured Blogs </NavLink>
-
-        <NavLink className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Wishlist
+            isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Home
         </NavLink>
-        {<>
-            <NavLink to='/login' className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Login </NavLink>
+        {
+            user?.email ? <>
+                <NavLink to='/addBlog' className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"
+                }> Add Blog </NavLink>
 
-            <NavLink to='/register' className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Register
-            </NavLink>
-        </>}
+                <NavLink to='/allBlogs' className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"
+                }>All Blogs  </NavLink>
+
+                <NavLink to='/featured' className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Featured Blogs </NavLink>
+
+                <NavLink to='/wishlist' className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-6 rounded-lg font-medium" : "font-medium"}> Wishlist
+                </NavLink>
+            </> : <>
+                <NavLink to='/login' className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Login </NavLink>
+
+                <NavLink to='/register' className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Register
+                </NavLink>
+            </>
+        }
 
     </div>
 

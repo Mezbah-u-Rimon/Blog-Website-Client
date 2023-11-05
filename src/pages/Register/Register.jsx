@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import register from "../../../public/register.svg"
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import SocialLogin from "./SocialLogin";
 
 
 const Register = () => {
@@ -85,9 +86,11 @@ const Register = () => {
                         <div className="form-control mt-6">
                             <button type="submit" className="btn bg-orange-500 text-white hover:text-black"> Register </button>
                         </div>
-                        {/* <SocialMedia></SocialMedia> */}
-                        <p className="my-4 text-center"> Already have an account  <Link className="font-bold text-orange-500" to="/login"> Login </Link>
+
+                        <p className="my-4 text-center"> Already have an account  <Link className="font-bold text-orange-500"
+                            to="/login"> Login </Link>
                         </p>
+                        <SocialLogin></SocialLogin>
                     </form>
 
                 </div>
