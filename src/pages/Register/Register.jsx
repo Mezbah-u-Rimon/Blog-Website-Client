@@ -1,16 +1,62 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import register from "../../../public/register.svg"
+import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
+
 
 const Register = () => {
+    const { createUser, profileUpdate } = useAuth();
+    const navigate = useNavigate();
+
+    const handleRegister = e => {
+        e.preventDefault();
+
+        const form = e.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const image = form.image.value;
+        // console.log(name, email, password, image);
+
+        //password validation
+        if (password.length < 6) {
+            return toast.error('Password not valid. At least 6 characters should be given in password');
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            return toast.error('Password not valid. At least 1 capital letter should be given in password');
+        }
+
+        if (!/[!@#$%^&*()_+{};[\]:;<>,.?~\\-]/.test(password)) {
+            return toast.error('Password not valid. At least 1 special character should be given in password');
+        }
+
+
+        // create user
+        createUser(email, password)
+            .then(() => {
+                profileUpdate(name, image)
+                    .then(() => {
+                        toast.success("user Register successfully");
+                        navigate("/")
+                    })
+            })
+            .catch(err => {
+                toast.error(err.message)
+            })
+
+    }
+
+
     return (
-        <div className="hero min-h-screen my-8 max-w-6xl mx-auto">
+        <div className="hero my-8 max-w-6xl mx-auto">
             <div className="hero-content flex-col lg:flex-row">
                 <div className="mr-8 lg:w-1/2">
-                    <img className="md:h-[600px]" src={register}></img>
+                    <img className="lg:h-[700px]" src={register}></img>
                 </div>
                 <div className="card flex-shrink-0 w-full md:max-w-md shadow-2xl bg-base-100">
 
-                    <form /* onSubmit={handleSignUp}  */ className="card-body">
+                    <form onSubmit={handleRegister} className="card-body">
                         <h1 className="text-3xl font-bold text-center"> Register Now  </h1>
                         <div className="form-control">
                             <label className="label">
@@ -29,12 +75,15 @@ const Register = () => {
                                 <span className="label-text"> Confirm Password</span>
                             </label>
                             <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control">
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <span className="label-text">Image URL </span>
                             </label>
+                            <input type="text" name="image" placeholder="Image URL" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn bg-orange-500 text-white hover:text-black"> Register </button>
+                            <button type="submit" className="btn bg-orange-500 text-white hover:text-black"> Register </button>
                         </div>
                         {/* <SocialMedia></SocialMedia> */}
                         <p className="my-4 text-center"> Already have an account  <Link className="font-bold text-orange-500" to="/login"> Login </Link>

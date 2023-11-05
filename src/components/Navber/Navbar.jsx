@@ -1,7 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 
 const Navbar = () => {
+    const { user, logOut } = useAuth();
+
+    const handleLogOut = () => {
+        logOut()
+    }
 
     const navbar = <div className="flex flex-col lg:flex-row items-center gap-3">
         <NavLink to="/" className={({ isActive, isPending }) =>
@@ -54,7 +60,7 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            {/* <div className="navbar-end">
+            <div className="navbar-end">
 
                 {
                     user?.email ? <div className="dropdown dropdown-end flex items-center">
@@ -69,18 +75,18 @@ const Navbar = () => {
 
                             </li>
                             <li>
-                                <button onClick={handleLogOut} className="btn btn-sm  btn-ghost bg-red-600 text-white">Logout</button>
+                                <button onClick={handleLogOut} className="btn btn-sm  btn-ghost bg-orange-500 text-white">Logout</button>
 
                             </li>
                         </ul>
                     </div>
                         :
                         <Link to='/login'>
-                            <button className="btn btn-sm  btn-ghost bg-red-600 text-white">Login</button>
+                            <button className="btn btn-sm  btn-ghost bg-orange-500 text-white">Login</button>
                         </Link>
                 }
 
-            </div> */}
+            </div>
         </div >
     );
 };
