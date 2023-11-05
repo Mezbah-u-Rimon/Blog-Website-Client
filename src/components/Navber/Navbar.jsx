@@ -23,10 +23,10 @@ const Navbar = () => {
             isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Wishlist
         </NavLink>
         {<>
-            <NavLink className={({ isActive, isPending }) =>
+            <NavLink to='/login' className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Login </NavLink>
 
-            <NavLink className={({ isActive, isPending }) =>
+            <NavLink to='/register' className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-white bg-orange-500 py-2 px-5 rounded-lg font-medium" : "font-medium"}> Register
             </NavLink>
         </>}
