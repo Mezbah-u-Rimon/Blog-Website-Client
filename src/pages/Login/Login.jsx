@@ -9,6 +9,8 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { signIn } = useAuth();
+    console.log("location is here", location);
+    console.log("navigate", navigate);
 
 
     const handleLogin = e => {

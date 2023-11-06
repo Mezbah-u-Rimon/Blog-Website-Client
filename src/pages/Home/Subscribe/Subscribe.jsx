@@ -10,8 +10,8 @@ const Subscribe = () => {
 
 
         if (email) {
-            toast.success("Thank you for subscribing to our newsletter")
-            return setEmail("")
+            toast.success("Thank you for subscribing to our newsletter");
+            setEmail("")
         }
     }
 
