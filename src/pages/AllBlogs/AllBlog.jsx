@@ -1,6 +1,6 @@
 
 
-const RecentPost = ({ post }) => {
+const AllBlog = ({ post }) => {
     const { _id, title, image, bl_st_details, category,
         /* bl_lg_details, date, time */ } = post || {};
 
@@ -47,4 +47,4 @@ const RecentPost = ({ post }) => {
     );
 };
 
-export default RecentPost;
+export default AllBlog;

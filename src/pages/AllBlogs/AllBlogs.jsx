@@ -1,14 +1,14 @@
 import { Dna } from "react-loader-spinner";
-import RecentPost from "./RecentPost";
+import useAxios from "../../hooks/useAxios";
 import {
     useQuery,
 } from '@tanstack/react-query'
-import useAxios from "../../../hooks/useAxios";
+import AllBlog from "./AllBlog";
 
-const RecentPosts = () => {
+
+const AllBlogs = () => {
     const axiosSecure = useAxios();
 
-    // const url = `http://localhost:5000/allBlogs`;
     const url = '/allBlogs';
 
     const { isPending, error, data: posts } = useQuery({
@@ -45,11 +45,11 @@ const RecentPosts = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {
-                    posts?.slice(0, 6).map((post, idx) => <RecentPost key={idx} post={post}> </RecentPost>)
+                    posts?.map((post) => <AllBlog key={post._id} post={post}> </AllBlog>)
                 }
             </div>
         </div>
     );
 };
 
-export default RecentPosts;
+export default AllBlogs;
