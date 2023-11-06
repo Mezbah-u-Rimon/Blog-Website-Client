@@ -6,7 +6,6 @@ const axiosSecure = axios.create({
 })
 
 const useAxios = () => {
-
     return axiosSecure;
 };
 

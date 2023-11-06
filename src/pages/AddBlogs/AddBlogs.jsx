@@ -1,122 +1,133 @@
 import Swal from "sweetalert2";
+import useAxios from "../../hooks/useAxios";
+
 
 
 const AddBlogs = () => {
+    // using axios hooks
+    const axiosSecure = useAxios()
+    const url = '/allBlogs';
 
-    const handleAddCar = e => {
+    const handleAddBlogs = async (e) => {
         e.preventDefault();
 
         const form = e.target;
-        const name = form.name.value;
-        const brand_name = form.brand_name.value;
-        const price = form.price.value;
+        const title = form.title.value;
         const category = form.category.value;
-        const rating = form.rating.value;
-        const details = form.details.value;
-        const photo = form.photo.value;
+        const date = form.date.value;
+        const time = form.time.value;
+        const bl_st_details = form.bl_st_details.value;
+        const bl_lg_details = form.bl_lg_details.value;
+        const image = form.image.value;
 
-        const addNewCar = { name, brand_name, price, category, rating, details, photo }
+        const addNewBlogs = { title, category, date, time, bl_st_details, bl_lg_details, image }
 
-        console.log(addNewCar);
 
-        //send data to the server
-        fetch('https://automotive-car-server-8jtyzxqqq-rimons-projects-5b7fea00.vercel.app/cars', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(addNewCar)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.insertedId) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Car added successfully',
-                        icon: 'success',
-                        confirmButtonText: 'Cool'
-                    })
-                }
+        // send data to the server
+        try {
+            console.log(addNewBlogs);
+            const data = await axiosSecure.post(url, addNewBlogs, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             })
 
-    };
+            console.log(data);
+            if (data.data.insertedId) {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your blog added successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
+            }
+
+        } catch (error) {
+            Swal.fire({
+                title: 'Error!',
+                text: `${error.message}`,
+                icon: 'error',
+                confirmButtonText: 'Back'
+            })
+        }
+    }
+
+
 
     return (
-        <div style={{ backgroundImage: "url('https://wallpapers.com/images/featured/sports-car-background-ybiazay5uj4y5r5p.jpg')", backgroundSize: "cover", backgroundRepeat: "no-repeat" }} className="w-full h-full">
+        <div style={{ backgroundImage: "url('https://media.cntraveler.com/photos/64879b50add73e0d14b17f9e/16:9/w_1920%2Cc_limit/Most-Adventurous-things-to-do-in-your-lifetime-(update)_timur-garifov-sisZWCDkmwA-unsplash.jpg')", backgroundSize: "cover", backgroundRepeat: "no-repeat" }} className="w-full h-full">
             <div style={{ backgroundColor: "rgba(0,0,0,0.5)" }} className="h-full w-full">
                 <div className="max-w-6xl mx-auto p-5 md:p-12 lg:px-24 lg:pb-24 lg:pt-12">
-                    <h1 className="text-4xl font-extrabold text-center pb-12 text-white"> ADD YOUR FAVORITE CAR </h1>
-                    <form className="space-y-7" onSubmit={handleAddCar}>
-                        {/* form cars name and brand name row */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div className="form-control md:w-full">
-                                <label className="label">
-                                    <span className="label-text text-white text-lg">Car Name </span>
-                                </label>
-                                <label className="input-group">
-                                    <input type="text" name="name" placeholder="Car's Name" className="input input-bordered w-full" required />
-                                </label>
-                            </div>
-                            <div className="form-control md:w-full">
-                                <label className="label">
-                                    <span className="label-text text-white text-lg">
-                                        Brand Name
-                                    </span>
-                                </label>
-                                <label className="input-group">
-                                    <select name="brand_name" className="select select-bordered w-full">
-                                        <option disabled selected> Select Your Brand </option>
-                                        <option>Mercedes-Benz</option>
-                                        <option>Lamborghini</option>
-                                        <option>Ferrari</option>
-                                        <option>Toyota</option>
-                                        <option>Rolls-Royce</option>
-                                        <option>BMW</option>
-                                    </select>
-                                </label>
-                            </div>
-                        </div>
+                    <h1 className="text-4xl font-extrabold text-center pb-12 text-white"> ADD YOUR FAVORITE BLOGS </h1>
+                    <form className="space-y-7"
+                        onSubmit={handleAddBlogs}>
 
-                        {/* form category and price row */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div className="form-control md:w-full">
                                 <label className="label">
-                                    <span className="label-text text-white text-lg">Price  </span>
+                                    <span className="label-text text-white text-lg">Title </span>
                                 </label>
                                 <label className="input-group">
-                                    <input type="number" name="price" placeholder="Car Price" className="input input-bordered w-full" required />
+                                    <input type="text" name="title" placeholder="Title" className="input input-bordered w-full" required />
                                 </label>
                             </div>
                             <div className="form-control md:w-full">
                                 <label className="label">
                                     <span className="label-text text-white text-lg">
-                                        Category Name
+                                        Category
                                     </span>
                                 </label>
                                 <label className="input-group">
                                     <select name="category" className="select select-bordered w-full">
-                                        <option disabled selected> Select Your Category </option>
-                                        <option>Mercedes-Benz</option>
-                                        <option>Lamborghini</option>
-                                        <option>Ferrari</option>
-                                        <option>Toyota</option>
-                                        <option>Rolls-Royce</option>
-                                        <option>BMW</option>
+                                        <option disabled selected> Select Your Category  </option>
+                                        <option>Personal </option>
+                                        <option>Travel </option>
+                                        <option>Food </option>
+                                        <option>Fashion </option>
+                                        <option>Technology </option>
+                                        <option>Health</option>
+                                        <option>Parenting </option>
+                                        <option>Finance  </option>
+                                        <option>Business </option>
+                                        <option> News </option>
                                     </select>
                                 </label>
                             </div>
                         </div>
 
-                        {/* form Rating and details row */}
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div className="form-control md:w-full">
                                 <label className="label">
-                                    <span className="label-text text-white text-lg">Rating  </span>
+                                    <span className="label-text text-white text-lg"> Date </span>
                                 </label>
                                 <label className="input-group">
                                     <label className="input-group">
-                                        <input type="number" name="rating" placeholder="Review (only 1 to 5) " className="input input-bordered w-full" required />
+                                        <input type="date" name="date" className="input input-bordered w-full" required />
+                                    </label>
+                                </label>
+                            </div>
+                            <div className="form-control md:w-full">
+                                <label className="label">
+                                    <span className="label-text text-white text-lg"> Time </span>
+                                </label>
+                                <label className="input-group">
+                                    <label className="input-group">
+                                        <input type="time" name="time" className="input input-bordered w-full" required />
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+
+                        {/* form sort and long description row */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div className="form-control md:w-full">
+                                <label className="label">
+                                    <span className="label-text text-white text-lg"> Sort Description  </span>
+                                </label>
+                                <label className="input-group">
+                                    <label className="input-group">
+                                        <input type="text" name="bl_st_details" placeholder="Sort Description" className="input input-bordered w-full" required />
                                     </label>
                                 </label>
                             </div>
@@ -125,7 +136,7 @@ const AddBlogs = () => {
                                     <span className="label-text text-white text-lg">Description  </span>
                                 </label>
                                 <label className="input-group">
-                                    <input type="text" name="details" placeholder="Description" className="input input-bordered w-full" required />
+                                    <input type="text" name="bl_lg_details" placeholder="Long Description" className="input input-bordered w-full" required />
                                 </label>
                             </div>
                         </div>
@@ -137,11 +148,11 @@ const AddBlogs = () => {
                                     <span className="label-text text-white text-lg">Photo URL </span>
                                 </label>
                                 <label className="input-group">
-                                    <input type="text" name="photo" placeholder="Photo URL" className="input input-bordered w-full" required />
+                                    <input type="text" name="image" placeholder="Photo URL" className="input input-bordered w-full" required />
                                 </label>
                             </div>
                         </div>
-                        <input className="btn btn-block bg-red-400" type="submit" value="Add Car" />
+                        <input className="btn btn-block bg-orange-500 text-white hover:text-black" type="submit" value="Add Your Blog" />
                     </form>
                 </div>
             </div>

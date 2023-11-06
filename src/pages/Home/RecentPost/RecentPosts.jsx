@@ -16,12 +16,6 @@ const RecentPosts = () => {
         queryFn: () =>
             axiosSecure.get(url)
                 .then((response) => response.data)
-
-        // axios.get(url)
-        // .then((response) => response.data)
-
-        // fetch(url)
-        //     .then((response) => response.json())
     })
 
     if (isPending) {
