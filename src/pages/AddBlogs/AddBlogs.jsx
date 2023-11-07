@@ -82,6 +82,7 @@ const AddBlogs = () => {
                                         <option disabled selected> Select Your Category  </option>
                                         <option>Personal </option>
                                         <option>Travel </option>
+                                        <option>Home & Garden </option>
                                         <option>Food </option>
                                         <option>Fashion </option>
                                         <option>Technology </option>
