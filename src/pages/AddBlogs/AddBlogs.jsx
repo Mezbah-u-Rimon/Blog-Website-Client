@@ -25,14 +25,12 @@ const AddBlogs = () => {
 
         // send data to the server
         try {
-            console.log(addNewBlogs);
             const data = await axiosSecure.post(url, addNewBlogs, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             })
 
-            console.log(data);
             if (data.data.insertedId) {
                 Swal.fire({
                     title: 'Success!',

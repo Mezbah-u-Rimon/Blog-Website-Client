@@ -7,6 +7,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import AddBlogs from "../pages/AddBlogs/AddBlogs";
 import AllBlogs from "../pages/AllBlogs/AllBlogs";
+import AddWishlist from "../pages/Wishlist/AddWishlist";
 
 
 
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
             {
                 path: "/allBlogs",
                 element: <AllBlogs></AllBlogs>
+            },
+            {
+                path: "/wishlist",
+                element: <AddWishlist></AddWishlist>,
+                loader: () => fetch("http://localhost:5000/wishlist")
             },
             {
                 path: "/login",

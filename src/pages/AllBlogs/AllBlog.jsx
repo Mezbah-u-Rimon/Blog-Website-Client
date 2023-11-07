@@ -1,9 +1,59 @@
+import Swal from "sweetalert2";
+import useAxios from "../../hooks/useAxios";
 
 
 const AllBlog = ({ post }) => {
     const { _id, title, image, bl_st_details, category,
-        /* bl_lg_details, date, time */ } = post || {};
+        bl_lg_details, date, time } = post || {};
 
+
+    // using axios hooks for wishlist
+    const axiosSecure = useAxios()
+    const url = '/wishlist';
+
+    const wishlist = {
+        _id, title, image, bl_st_details, category, bl_lg_details, date, time
+    }
+
+    const handleWishlist = async () => {
+        // send data to the server
+        try {
+            const data = await axiosSecure.post(url, wishlist, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+
+            if (data.data.insertedId && data.data.acknowledged === true) {
+                console.log(data.data);
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Your blog added successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                })
+            }
+            else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: "Already added this blog",
+                    icon: 'error',
+                    confirmButtonText: 'Back'
+                })
+            }
+
+        }
+        catch (error) {
+            if (error) {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Already added this blog',
+                    icon: 'error',
+                    confirmButtonText: 'Back'
+                })
+            }
+        }
+    }
 
     return (
         <div>
@@ -35,7 +85,7 @@ const AllBlog = ({ post }) => {
                     >
                         More Details
                     </button>
-                    <button
+                    <button onClick={() => handleWishlist(_id)}
                         className="hover:border-2 border-orange-500 text-orange-500 select-none rounded-lg bg-blue-gray-900/10 py-3 px-6 text-center align-middle text-xs font-bold uppercase text-blue-gray-900 transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                         type="button"
                     >
