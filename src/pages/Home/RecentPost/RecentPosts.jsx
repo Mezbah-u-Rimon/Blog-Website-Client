@@ -36,7 +36,6 @@ const RecentPosts = () => {
         </div>;
     }
 
-    console.log(posts);
 
     return (
         <div className="bg-base-100 py-24 mx-auto px-3">

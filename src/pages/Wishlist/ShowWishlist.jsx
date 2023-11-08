@@ -1,9 +1,44 @@
+import Swal from "sweetalert2";
+import useAxios from "../../hooks/useAxios";
+import { Link } from "react-router-dom";
 
 
 const ShowWishlist = ({ wishlist, allWishlist, setAllWishlist }) => {
     const { _id, title, image, bl_st_details, category,
-        bl_lg_details, date, time } = wishlist || {};
+        /* bl_lg_details, date, time */ } = wishlist || {};
 
+    // using axios hooks for delete
+    const axiosSecure = useAxios()
+
+
+    const handleDelete = (id) => {
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to delete this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/wishlist/${id}`)
+                    .then(data => {
+                        if (data.data.deletedCount > 0) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your selected Blog has been deleted.',
+                                'success'
+                            )
+                            const remaining = allWishlist?.filter(blog => blog._id !== id);
+                            setAllWishlist(remaining)
+                        }
+                    })
+            }
+        })
+    }
 
 
     return (
@@ -15,15 +50,17 @@ const ShowWishlist = ({ wishlist, allWishlist, setAllWishlist }) => {
                 <div className='w-full md:w-2/4'>
                     <h2 className="text-xl font-bold pb-4 inline-block">{title}
                     </h2>
-                    <p className='text-gray-500 pb-2'>{category}  </p>
+                    <p className='text-orange-500 pb-2'>{category}  </p>
                     <p className='text-gray-500 pb-2'> {bl_st_details}  </p>
 
                 </div>
                 <div className='md:w-[200px] w-full flex flex-col gap-5'>
-                    <button /* onClick={() => handleDelete(_id)} */ className='text-base text-center px-6 py-3 rounded-lg border-orange-500 border text-orange-500 shadow-lg hover:shadow-orange-200'> Remove Wishlist </button>
+                    <button onClick={() => handleDelete(_id)} className='text-base text-center px-6 py-3 rounded-lg border-orange-500 border text-orange-500 shadow-lg hover:shadow-orange-200'> Remove Wishlist </button>
 
                     {/* details button */}
-                    <button /* onClick={() => handleDelete(_id)} */ className='text-base text-center px-6 py-3 rounded-lg border-orange-500 border text-orange-500 shadow-lg hover:shadow-orange-200'> Details More  </button>
+                    <Link to={`/blogDetails/${_id}`}>
+                        <button className='text-base text-center w-full px-6 py-3 rounded-lg border-orange-500 border text-orange-500 shadow-lg hover:shadow-orange-200'> More  Details  </button>
+                    </Link>
                 </div>
             </div>
         </div>
