@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Dna } from "react-loader-spinner";
+import Comment from "./Comment";
 
 
 const BlogDetails = () => {
@@ -40,7 +41,7 @@ const BlogDetails = () => {
 
     return (
 
-        <div className="w-full max-w-6xl mx-auto mb-24 md:mt-16 mt-5">
+        <div className="w-full max-w-6xl mx-auto mb-24 md:mt-16 mt-5 px-5">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <div className="relative lg:m-0 overflow-hidden text-gray-700 bg-white shrink-0 rounded-xl bg-clip-border m-4">
                     <img
@@ -61,7 +62,7 @@ const BlogDetails = () => {
                             {singleData.title}
                         </h4>
                         <h6 className=" text-base font-semibold text-amber-500">
-                            {singleData.date} & {singleData.time}
+                            <span className="text-black">Posted Date :</span> {singleData.date} & {singleData.time}
                         </h6>
 
                         <p className="block mb-8 mt-5 text-base  font-normal text-gray-700">
@@ -82,6 +83,9 @@ const BlogDetails = () => {
                     {singleData.bl_lg_details}
                 </p>
             </div>
+
+            {/* comment blog */}
+            <Comment></Comment>
         </div>
     );
 };
