@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Dna } from "react-loader-spinner";
@@ -8,6 +8,7 @@ import Comment from "./Comment";
 const BlogDetails = () => {
 
     const { id } = useParams()
+    console.log(id);
     const axiosSecure = useAxios();
 
     const url = '/allBlogs';
@@ -70,10 +71,11 @@ const BlogDetails = () => {
                             {singleData.bl_st_details}
                         </p>
 
-                        <button /* onClick={() => handleAddToCart(_id)} */ className="px-6 py-3 text-base text-center bg-orange-500 btn hover:text-black text-white">
-                            Update Blog
-                        </button>
-
+                        <Link to={`/update/${id}`}>
+                            <button className="px-6 py-3 text-base text-center bg-orange-500 btn hover:text-black text-white">
+                                Update Blog
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

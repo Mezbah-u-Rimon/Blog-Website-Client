@@ -9,6 +9,8 @@ import AddBlogs from "../pages/AddBlogs/AddBlogs";
 import AllBlogs from "../pages/AllBlogs/AllBlogs";
 import AddWishlist from "../pages/Wishlist/AddWishlist";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
+import UpdateBlog from "../pages/Update/UpdateBlog";
+
 
 
 
@@ -32,7 +34,10 @@ const router = createBrowserRouter([
             {
                 path: "/blogDetails/:id",
                 element: <BlogDetails></BlogDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/allBlogs/${params.id}`),
+            },
+            {
+                path: "/update/:id",
+                element: <UpdateBlog></UpdateBlog>,
             },
             {
                 path: "/wishlist",
