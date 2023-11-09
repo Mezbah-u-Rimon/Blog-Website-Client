@@ -40,10 +40,10 @@ const Featured = () => {
 
 
     return (
-        <div className="max-w-6xl mx-auto">
-            <h1 className="text-4xl text-orange-500 text-center my-10 font-bold"> Our Top Featured Post </h1>
-            <div className="overflow-x-auto ">
-                <table className="table flex justify-center items-center">
+        <div className="max-w-6xl w-full mx-auto">
+            <h1 className="text-4xl text-orange-500 text-center my-10 font-bold"> Our Top 10 Featured Post </h1>
+            <div className="overflow-x-auto lg:ml-16">
+                <table className="table">
                     {/* head */}
                     <thead>
                         <tr>
