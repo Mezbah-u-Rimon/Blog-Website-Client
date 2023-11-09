@@ -1,6 +1,7 @@
 import { Navigate, useLocation } from "react-router-dom";
 // import { CirclesWithBar } from "react-loader-spinner";
 import useAuth from "../hooks/useAuth";
+import { Dna } from "react-loader-spinner";
 
 
 const PrivateRoute = ({ children }) => {
@@ -9,19 +10,15 @@ const PrivateRoute = ({ children }) => {
 
     if (loading) {
         return <div className="h-screen w-full flex justify-center items-center">
-            {/* <CirclesWithBar
-                height="100"
-                width="100"
-                color="orange"
-                wrapperStyle={{}}
-                wrapperClass=""
+            <Dna
                 visible={true}
-                outerCircleColor=""
-                innerCircleColor=""
-                barColor=""
-                ariaLabel='circles-with-bar-loading'
-            /> */}
-        </div>
+                height="80"
+                width="80"
+                ariaLabel="dna-loading"
+                wrapperStyle={{}}
+                wrapperClass="dna-wrapper text-center"
+            /> </div>
+
     }
     if (!user) {
         return <Navigate state={location.pathname} to='/login'></Navigate>

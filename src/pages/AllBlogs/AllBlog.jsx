@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAxios from "../../hooks/useAxios";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 
 const AllBlog = ({ post }) => {
@@ -9,8 +10,9 @@ const AllBlog = ({ post }) => {
 
 
     // using axios hooks for wishlist
+    const { user } = useAuth();
     const axiosSecure = useAxios()
-    const url = '/wishlist';
+    const url = `/wishlist?email=${user?.email}`;
 
     const wishlist = {
         _id, title, image, bl_st_details, category, bl_lg_details, date, time

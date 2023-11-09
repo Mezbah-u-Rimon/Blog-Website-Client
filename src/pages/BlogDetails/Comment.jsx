@@ -53,7 +53,6 @@ const Comment = () => {
 
     })
 
-    console.log(addComment);
 
     return (
         <div>

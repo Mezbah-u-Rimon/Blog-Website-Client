@@ -1,11 +1,21 @@
-import { useLoaderData } from "react-router-dom";
-import { useState } from "react";
+// import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
 import ShowWishlist from "./ShowWishlist";
+import useAxios from "../../hooks/useAxios";
+import useAuth from "../../hooks/useAuth";
 
 
 const AddWishlist = () => {
-    const myWishlist = useLoaderData();
-    const [allWishlist, setAllWishlist] = useState(myWishlist);
+    // const myWishlist = useLoaderData();
+    const [allWishlist, setAllWishlist] = useState([]);
+    const axiosSecure = useAxios()
+    const { user } = useAuth()
+
+    useEffect(() => {
+        axiosSecure.get(`/wishlist?email=${user?.email}`)
+            .then((response) => setAllWishlist(response.data))
+    }, [axiosSecure, user])
+
 
     return (
         <div className="max-w-6xl mx-auto pt-12 pb-24 px-5">

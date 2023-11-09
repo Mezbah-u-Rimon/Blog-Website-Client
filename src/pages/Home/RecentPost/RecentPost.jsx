@@ -1,16 +1,18 @@
 import Swal from "sweetalert2";
 import useAxios from "../../../hooks/useAxios";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 
 const RecentPost = ({ post }) => {
     const { _id, title, image, bl_st_details, category, bl_lg_details, date, time
     } = post || {};
 
+    const { user } = useAuth();
 
     // using axios hooks for wishlist
     const axiosSecure = useAxios()
-    const url = '/wishlist';
+    const url = `/wishlist?email=${user?.email}`;
 
     const wishlist = {
         _id, title, image, bl_st_details, category, bl_lg_details, date, time

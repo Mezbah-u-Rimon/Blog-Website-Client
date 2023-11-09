@@ -10,8 +10,8 @@ import AllBlogs from "../pages/AllBlogs/AllBlogs";
 import AddWishlist from "../pages/Wishlist/AddWishlist";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
 import UpdateBlog from "../pages/Update/UpdateBlog";
-
-
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+// import Featured from "../pages/Featured/Featured";
 
 
 const router = createBrowserRouter([
@@ -25,23 +25,27 @@ const router = createBrowserRouter([
             },
             {
                 path: "/addBlog",
-                element: <AddBlogs></AddBlogs>
+                element: <PrivateRoute><AddBlogs></AddBlogs></PrivateRoute>
             },
             {
                 path: "/allBlogs",
-                element: <AllBlogs></AllBlogs>
+                element: <PrivateRoute><AllBlogs></AllBlogs></PrivateRoute>
             },
             {
                 path: "/blogDetails/:id",
-                element: <BlogDetails></BlogDetails>,
+                element: <PrivateRoute><BlogDetails></BlogDetails></PrivateRoute>,
             },
             {
                 path: "/update/:id",
-                element: <UpdateBlog></UpdateBlog>,
+                element: <PrivateRoute><UpdateBlog></UpdateBlog></PrivateRoute>,
             },
+            // {
+            //     path: "/featured",
+            //     element: <Featured></Featured>
+            // },
             {
                 path: "/wishlist",
-                element: <AddWishlist></AddWishlist>,
+                element: <PrivateRoute> <AddWishlist></AddWishlist> </PrivateRoute>,
                 loader: () => fetch("http://localhost:5000/wishlist")
             },
             {
