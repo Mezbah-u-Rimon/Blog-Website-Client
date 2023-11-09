@@ -42,7 +42,7 @@ A form field is provided on the register page.
 
 <h3 className="text-xl"> Feature-5 : </h3>
 <ul><li>
- If the form is filled then the user will be logged in.The user image and name will appear in the navbar.Google login and GitHub login options are provided in the register form.Users can register through Google or GitHub if they want.Clicking on the register button will take you back to the page from which you registered. The login page works exactly the same way.Here the email and password have to be validated. If the email and password are not valid, a error toast will be displayed. Password validation must contain uppercase letters and cannot be less than six digits and must contain any symbols.A success toast will show after logging in properly.After logging in correctly, it will take you to the page you want to go to again. Next is the contact page. The contact page contains information to get in touch.
+ If the form is filled then the user will be logged in.The user image and name will appear in the navbar.Google login and GitHub login options are provided in the register form.Users can register through Google or GitHub if they want.Clicking on the register button will take you back to the page from which you registered. The login page works exactly the same way.Here the email and password have to be validated. If the email and password are not valid, a error toast will be displayed. Password validation must contain uppercase letters and cannot be less than six digits and must contain any symbols.A success toast will show after logging in properly.After logging in correctly, it will be take you to the page you want to go to again. Next is the contact page. The contact page contains information to get in touch.
 </li>
 </ul>
 
