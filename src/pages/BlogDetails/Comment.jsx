@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 
 
 const Comment = ({ singleData }) => {
-    console.log(singleData);
 
     const { user } = useAuth();
     // using axios hooks
