@@ -11,11 +11,12 @@ const AllBlog = ({ post }) => {
 
     // using axios hooks for wishlist
     const { user } = useAuth();
+    const { email, displayName, photoURL } = user || {};
     const axiosSecure = useAxios()
-    const url = `/wishlist?email=${user?.email}`;
+    const url = `/wishlist`;
 
     const wishlist = {
-        _id, title, image, bl_st_details, category, bl_lg_details, date, time
+        _id, title, image, bl_st_details, category, bl_lg_details, date, time, email, displayName, photoURL
     }
 
     const handleWishlist = async () => {

@@ -1,12 +1,16 @@
 import Swal from "sweetalert2";
 import useAxios from "../../hooks/useAxios";
+import useAuth from "../../hooks/useAuth";
 
 
 
 const AddBlogs = () => {
+    const { user } = useAuth()
+    const { email, displayName, photoURL } = user || {};
+
     // using axios hooks
     const axiosSecure = useAxios()
-    const url = '/allBlogs';
+    const url = `/allBlogs`;
 
     const handleAddBlogs = async (e) => {
         e.preventDefault();
@@ -20,7 +24,7 @@ const AddBlogs = () => {
         const bl_lg_details = form.bl_lg_details.value;
         const image = form.image.value;
 
-        const addNewBlogs = { title, category, date, time, bl_st_details, bl_lg_details, image }
+        const addNewBlogs = { title, category, date, time, bl_st_details, bl_lg_details, image, email, displayName, photoURL }
 
 
         // send data to the server

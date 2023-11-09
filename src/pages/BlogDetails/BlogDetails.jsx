@@ -3,12 +3,13 @@ import useAxios from "../../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Dna } from "react-loader-spinner";
 import Comment from "./Comment";
+import useAuth from "../../hooks/useAuth";
 
 
 const BlogDetails = () => {
-
+    const { user } = useAuth()
     const { id } = useParams()
-    console.log(id);
+
     const axiosSecure = useAxios();
 
     const url = '/allBlogs';
@@ -71,11 +72,13 @@ const BlogDetails = () => {
                             {singleData.bl_st_details}
                         </p>
 
-                        <Link to={`/update/${id}`}>
-                            <button className="px-6 py-3 text-base text-center bg-orange-500 btn hover:text-black text-white">
-                                Update Blog
-                            </button>
-                        </Link>
+                        {user.email === singleData.email ?
+                            <Link to={`/update/${id}`}>
+                                <button className="px-6 py-3 text-base text-center bg-orange-500 btn hover:text-black text-white">
+                                    Update Blog
+                                </button>
+                            </Link> : <p>If the block is your own then update button will show here</p>
+                        }
                     </div>
                 </div>
             </div>
@@ -87,7 +90,7 @@ const BlogDetails = () => {
             </div>
 
             {/* comment blog */}
-            <Comment></Comment>
+            <Comment singleData={singleData}></Comment>
         </div>
     );
 };

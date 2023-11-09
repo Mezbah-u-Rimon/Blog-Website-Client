@@ -1,4 +1,3 @@
-// import { useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ShowWishlist from "./ShowWishlist";
 import useAxios from "../../hooks/useAxios";
@@ -6,7 +5,6 @@ import useAuth from "../../hooks/useAuth";
 
 
 const AddWishlist = () => {
-    // const myWishlist = useLoaderData();
     const [allWishlist, setAllWishlist] = useState([]);
     const axiosSecure = useAxios()
     const { user } = useAuth()

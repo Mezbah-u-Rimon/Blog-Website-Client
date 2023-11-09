@@ -6,7 +6,9 @@ import Message from "./Message";
 import toast from "react-hot-toast";
 
 
-const Comment = () => {
+const Comment = ({ singleData }) => {
+    console.log(singleData);
+
     const { user } = useAuth();
     // using axios hooks
     const axiosSecure = useAxios()
@@ -59,11 +61,14 @@ const Comment = () => {
             {/* post comment */}
             <div>
                 <h3 className="text-xl font-semibold mb-4"> Comment This Blog... </h3>
-                <form onSubmit={handleSubmit}>
-                    <textarea name="comment" rows="2" className="textarea border-2 w-3/4 md:w-1/2 border-orange-400" placeholder="Shear your feedback"> </textarea>
-                    <br />
-                    <input className="btn  bg-orange-500 text-white hover:text-black" type="submit" value="Add Your Comment" />
-                </form>
+                {
+                    !singleData.email ? <form onSubmit={handleSubmit}>
+                        <textarea name="comment" rows="2" className="textarea border-2 w-3/4 md:w-1/2 border-orange-400" placeholder="Shear your feedback"> </textarea>
+                        <br />
+                        <input className="btn  bg-orange-500 text-white hover:text-black" type="submit" value="Add Your Comment" />
+                    </form> : <p>Sorry can't comment under own blog </p>
+                }
+
             </div>
 
             {/* add comment */}
