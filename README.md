@@ -47,5 +47,5 @@ A form field is provided on the register page.
 </ul>
 
 <h1 className="text-5xl"> Live Link :
-<a href="https://blog-website-e0127.firebaseapp.com" target="_blank" rel="brand"> https://blog-website-e0127.firebaseapp.com/  </a>
+<a href="https://our-blogs-website.netlify.app" target="_blank" rel="brand"> https://our-blogs-website.netlify.app  </a>
 </h1>
