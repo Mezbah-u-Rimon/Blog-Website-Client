@@ -33,7 +33,6 @@ const AllBlogs = () => {
         queryFn: () =>
             axiosSecure.get(url)
                 .then((res) => res.data),
-
     })
 
 

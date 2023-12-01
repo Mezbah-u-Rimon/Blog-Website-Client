@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import ShowWishlist from "./ShowWishlist";
 import useAxios from "../../hooks/useAxios";
-import useAuth from "../../hooks/useAuth";
 
 
 const AddWishlist = () => {
     const [allWishlist, setAllWishlist] = useState([]);
     const axiosSecure = useAxios()
-    const { user } = useAuth()
+
 
     useEffect(() => {
-        axiosSecure.get(`/wishlist?email=${user?.email}`)
+        axiosSecure.get(`/wishlist`)
             .then((response) => setAllWishlist(response.data))
-    }, [axiosSecure, user])
+    }, [axiosSecure])
 
 
     return (

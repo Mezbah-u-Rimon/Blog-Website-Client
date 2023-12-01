@@ -28,7 +28,7 @@ const AllBlog = ({ post }) => {
                 },
             })
 
-            if (data.data.insertedId && data.data.acknowledged === true) {
+            if (data.data.insertedId) {
                 console.log(data.data);
                 Swal.fire({
                     title: 'Success!',
@@ -51,7 +51,7 @@ const AllBlog = ({ post }) => {
             if (error) {
                 Swal.fire({
                     title: 'Error!',
-                    text: 'Already added this blog',
+                    text: error.message,
                     icon: 'error',
                     confirmButtonText: 'Back'
                 })

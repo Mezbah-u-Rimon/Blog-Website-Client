@@ -3,11 +3,13 @@ import register from "../../../public/register.svg"
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import SocialLogin from "./SocialLogin";
+import useAxios from "../../hooks/useAxios";
 
 
 const Register = () => {
     const { createUser, profileUpdate } = useAuth();
     const navigate = useNavigate();
+    const axiosSecure = useAxios();
 
     const handleRegister = e => {
         e.preventDefault();
@@ -18,6 +20,8 @@ const Register = () => {
         const password = form.password.value;
         const image = form.image.value;
         // console.log(name, email, password, image);
+
+
 
         //password validation
         if (password.length < 6) {
@@ -38,8 +42,18 @@ const Register = () => {
             .then(() => {
                 profileUpdate(name, image)
                     .then(() => {
-                        toast.success("user Register successfully");
-                        navigate("/")
+                        //user info
+                        const userInfo = {
+                            name, email, password,
+                        }
+                        axiosSecure.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    toast.success("Thank You for Subscribe Our website, You will earn 20 tk, please wait You will get your money within 3 hours");
+                                    navigate("/home")
+                                }
+                            })
+
                     })
             })
             .catch(err => {
@@ -58,7 +72,7 @@ const Register = () => {
                 <div className="card flex-shrink-0 w-full md:max-w-md shadow-2xl bg-base-100">
 
                     <form onSubmit={handleRegister} className="card-body">
-                        <h1 className="text-3xl font-bold text-center"> Register Now  </h1>
+                        <h1 className="text-3xl font-bold text-center"> Register Now   </h1>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text"> Name </span>
